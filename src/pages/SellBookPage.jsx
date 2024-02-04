@@ -124,6 +124,9 @@ export default function SellBookPage() {
                                     <option value="Shoes">Shoes</option>
                                     <option value="Courses">Courses</option>
                                     <option value="Books">Books</option>
+                                    <option value="Miscellaneous">
+                                        Miscellaneous
+                                    </option>
                                     <option value="Electronics">
                                         Electronics
                                     </option>
