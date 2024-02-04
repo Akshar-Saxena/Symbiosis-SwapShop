@@ -6,6 +6,7 @@ import LoginPage from "./pages/LoginPage";
 import SellBookPage from "./pages/SellBookPage";
 import AllBooksPage from "./pages/AllBooksPage";
 import DetailsPage from "./pages/DetailsPage";
+import ProfilePage from "./pages/ProfilePage";
 
 export default function App() {
     return (
@@ -17,6 +18,7 @@ export default function App() {
                 <Route exact path="/upload" element={<SellBookPage />} />
                 <Route exact path="/items" element={<AllBooksPage />} />
                 <Route exact path="/details" element={<DetailsPage />} />
+                <Route exact path="/profile" element={<ProfilePage />} />
             </Routes>
         </Router>
     );

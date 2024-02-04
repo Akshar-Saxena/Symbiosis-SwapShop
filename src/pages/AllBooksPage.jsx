@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Loader from "../components/Loader";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import NavBar from "../components/NavBar";
 import BookCard from "../components/BookCard";
 import Footer from "../components/Footer";
@@ -100,7 +100,15 @@ export default function AllBooksPage() {
                                         className="w-[30px] ml-4 cursor-pointer h-[30px]"
                                         src="./search.png"
                                         alt=""
-                                        onClick={searchHandler}
+                                        onClick={() => {
+                                            if (query == "") {
+                                                toast.error(
+                                                    "Enter something to search"
+                                                );
+                                            } else {
+                                                searchHandler();
+                                            }
+                                        }}
                                     />
                                 </div>
                             </div>

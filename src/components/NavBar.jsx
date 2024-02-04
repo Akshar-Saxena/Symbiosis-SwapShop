@@ -95,11 +95,7 @@ export default function NavBar(props) {
                 </button>
             ) : (
                 <img
-                    onClick={() => {
-                        document.cookie =
-                            "token=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
-                        window.location.reload();
-                    }}
+                    onClick={() => navigate("/profile")}
                     className="w-[30px] max-[750px]:hidden cursor-pointer"
                     src="/profile.png"
                     alt=""

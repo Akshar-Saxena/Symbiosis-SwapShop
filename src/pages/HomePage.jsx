@@ -36,12 +36,17 @@ export default function HomePage() {
                     <div className="w-[90%] max-[820px]:flex-col-reverse flex justify-between items-center m-auto">
                         <div className="w-[50%] max-[430px]:flex max-[430px]:flex-col max-[430px]:items-center max-[820px]:w-[70%] mt-10">
                             <h1 className="text-6xl max-[500px]:text-4xl font-semibold">
-                                Sharing Accessorizing <br />{" "}
+                                <span className="text-[#FB635D]">
+                                    Collaborative Living,
+                                </span>{" "}
+                                <br />
+                                Resourceful Giving.{" "}
+                                {/* Sharing Accessorizing <br />{" "}
                                 <span className="text-[#FB635D]">
                                     Opportunities
                                 </span>{" "}
                                 <br /> Across
-                                <span className="text-[#FB635D]"> Campus!</span>
+                                <span className="text-[#FB635D]"> Campus!</span> */}
                             </h1>
                             <p className="text-gray-600 font-semibold my-5">
                                 Elevate your style, share your flair – Symbiosis
