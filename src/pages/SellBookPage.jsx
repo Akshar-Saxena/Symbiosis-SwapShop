@@ -88,7 +88,7 @@ export default function SellBookPage() {
             ) : (
                 <div>
                     {!verified ? (
-                        <div className="h-screen flex justify-center items-center w-full text-6xl font-bold">
+                        <div className="h-screen flex max-[500px]:text-4xl justify-center items-center w-full text-6xl font-bold">
                             Please{" "}
                             <a className="text-[#FB635D] ml-3" href="/login">
                                 Login
