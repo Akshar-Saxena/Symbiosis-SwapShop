@@ -10,12 +10,29 @@ export default function AllBooksPage() {
     const [loading, setLoading] = useState(true);
     const [verified, setVerified] = useState();
     const [data, setData] = useState([]);
+    const [query, setQuery] = useState("");
 
     const getBooks = async () => {
         setLoading(true);
         axios
             .get("https://campus-share-api.onrender.com/allItems")
             .then((res) => {
+                setData(res.data);
+                setLoading(false);
+            })
+            .catch((e) => {
+                setLoading(false);
+            });
+    };
+
+    const searchHandler = () => {
+        setLoading(true);
+        axios
+            .post("https://campus-share-api.onrender.com/search", {
+                query: query,
+            })
+            .then((res) => {
+                setData([]);
                 setData(res.data);
                 setLoading(false);
             })
@@ -63,13 +80,29 @@ export default function AllBooksPage() {
                     ) : (
                         <div>
                             <NavBar set={verified} />
-                            <div className="w-[80%] flex justify-between items-center m-auto mt-10">
+                            <div className="w-[80%] flex max-[700px]:flex-col justify-between items-center m-auto mt-10">
                                 <h1 className="text-5xl font-bold">
                                     All{" "}
                                     <span className="text-[#FB635D]">
                                         Items.
                                     </span>
                                 </h1>
+                                <div className="bg-[#FB635D] max-[700px]:mt-6  items-center justify-between px-6 flex rounded-3xl">
+                                    <input
+                                        className="bg-transparent max-[380px]:w-[150px] text-white focus:border-black my-3 focus:outline-none border-b-2 border-white"
+                                        type="text"
+                                        value={query}
+                                        onChange={(e) =>
+                                            setQuery(e.target.value)
+                                        }
+                                    />
+                                    <img
+                                        className="w-[30px] ml-4 cursor-pointer h-[30px]"
+                                        src="./search.png"
+                                        alt=""
+                                        onClick={searchHandler}
+                                    />
+                                </div>
                             </div>
                             <div className="w-[90%] flex flex-wrap m-auto justify-evenly items-center my-10">
                                 {data != [] &&
