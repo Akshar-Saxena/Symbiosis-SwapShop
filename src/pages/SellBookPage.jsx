@@ -136,7 +136,7 @@ export default function SellBookPage() {
                                 />
                                 <button
                                     onClick={validate}
-                                    className="py-4 ml-[50%] my-6 -translate-x-1/2  rounded-full px-10 text-white bg-[#FB635D]"
+                                    className="py-4 ml-[50%] max-[500px]:w-[200px] my-6 -translate-x-1/2  rounded-full px-10 text-white bg-[#FB635D]"
                                 >
                                     Upload Item
                                 </button>

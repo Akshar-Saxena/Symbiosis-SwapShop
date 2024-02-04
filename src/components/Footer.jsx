@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
     return (
-        <div className="flex border-t-2 flex-wrap border-[#FB635D] w-[80%] m-auto justify-between items-center py-6">
-            <img className="w-[200px]" src="/footer.png" alt="" />
+        <div className="flex border-t-2 flex-wrap border-[#FB635D] w-[80%] m-auto justify-evenly items-center py-6">
+            <img className="w-[200px] mt-8 " src="/footer.png" alt="" />
 
-            <ul>
+            <ul className="mt-8 flex flex-col max-[400px]:items-center">
                 <li className="font-bold underline ">Important Links</li>
                 <Link to="/">
                     <li className="hover:text-[#FB635D] cursor-pointer font-semibold ">
@@ -29,7 +29,7 @@ export default function Footer() {
                     </li>
                 </Link>
             </ul>
-            <div className="flex flex-col">
+            <div className="flex flex-col mt-8 max-[400px]:items-center">
                 <h1>
                     Made by{" "}
                     <span className="text-[#FB635D] font-bold">

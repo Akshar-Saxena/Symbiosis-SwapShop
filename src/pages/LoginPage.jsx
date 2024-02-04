@@ -45,7 +45,7 @@ export default function LoginPage() {
                 <Loader />
             ) : (
                 <div className="flex h-screen w-full justify-between">
-                    <div className="flex flex-col w-[40%] px-8 justify-evenly items-center">
+                    <div className="flex flex-col w-[40%] max-[750px]:hidden px-8 justify-evenly items-center">
                         <h1 className="text-5xl text-center font-bold">
                             <span className="text-[#FB635D]">Swap</span> it,{" "}
                             <br /> Rock it, <br /> Own it
@@ -62,9 +62,9 @@ export default function LoginPage() {
                             alt=""
                         />
                     </div>
-                    <div className="bg-[#C5DCFC] flex flex-col justify-center items-center w-[60%] shadow-lg shadow-[#FB635D] rounded-l-[80px]">
+                    <div className="bg-[#C5DCFC] max-[750px]:w-full max-[750px]:rounded-none flex flex-col justify-center items-center w-[60%] shadow-lg shadow-[#FB635D] rounded-l-[80px]">
                         <h1 className="text-5xl font-bold mb-8">Login</h1>
-                        <div className="w-[60%]">
+                        <div className="w-[60%] max-[400px]:w-[75%]">
                             <input
                                 className="px-6 py-4 my-8 w-full bg-transparent border-b-2 border-black focus:outline-none focus:border-[#FB635D]"
                                 type="email"

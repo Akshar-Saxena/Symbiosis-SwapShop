@@ -12,7 +12,11 @@ export default function HomePage() {
                 id: document.cookie.slice(6),
             })
             .then((response) => {
-                setVerified(true);
+                if (Object.keys(response.data).length == 2) {
+                    setVerified(true);
+                } else {
+                    setVerified(false);
+                }
                 setLoading(false);
             })
             .catch((error) => {
@@ -30,7 +34,7 @@ export default function HomePage() {
                 <div>
                     <NavBar set={verified} />
                     <div className="w-[90%] max-[820px]:flex-col-reverse flex justify-between items-center m-auto">
-                        <div className="w-[50%] max-[820px]:w-[70%] mt-10">
+                        <div className="w-[50%] max-[430px]:flex max-[430px]:flex-col max-[430px]:items-center max-[820px]:w-[70%] mt-10">
                             <h1 className="text-6xl max-[500px]:text-4xl font-semibold">
                                 Sharing Accessorizing <br />{" "}
                                 <span className="text-[#FB635D]">
@@ -58,7 +62,7 @@ export default function HomePage() {
                         <h1 className="text-5xl font-semibold text-[#FB635D] mb-6">
                             About
                         </h1>
-                        <p className="w-[70%] text-justify text-lg">
+                        <p className="w-[70%] max-[400px]:w-[85%] text-justify text-lg">
                             Welcome to Symbiosis Swapshop, the innovative
                             platform connecting campus users with surplus
                             accessories to those in need. Whether you're looking
@@ -68,14 +72,14 @@ export default function HomePage() {
                             and empowerment. Join us in reshaping campus
                             fashion, one accessory at a time!
                         </p>
-                        <p className="w-[70%] text-justify text-lg">
+                        <p className="w-[70%] max-[400px]:w-[85%] text-justify text-lg">
                             At Symbiosis Swapshop, we're dedicated to fostering
                             a vibrant campus community by facilitating the
                             exchange of accessories, empowering users to express
                             their unique style while reducing waste and
                             promoting sustainability.
                         </p>
-                        <div className="w-[70%] flex flex-col">
+                        <div className="w-[70%] max-[400px]:w-[85%] flex flex-col">
                             <h1 className="text-xl font-bold mt-6">
                                 Our Mission
                             </h1>
@@ -91,7 +95,7 @@ export default function HomePage() {
                                 our platform is here to empower you.
                             </p>
                         </div>
-                        <div className="w-[70%] flex flex-col">
+                        <div className="w-[70%] max-[400px]:w-[85%] flex flex-col">
                             <h1 className="text-xl font-bold mt-6">
                                 Building Community
                             </h1>
@@ -112,7 +116,7 @@ export default function HomePage() {
                                 swapping!
                             </p>
                         </div>
-                        <div className="w-[70%] flex flex-col">
+                        <div className="w-[70%] max-[400px]:w-[85%] flex flex-col">
                             <h1 className="text-xl font-bold mt-6">
                                 Gratitude
                             </h1>
