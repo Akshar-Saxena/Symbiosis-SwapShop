@@ -1,19 +1,17 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-    apiKey: import.meta.env.VITE_KEY,
-    authDomain: "page-flip-trade.firebaseapp.com",
-    projectId: "page-flip-trade",
-    storageBucket: "page-flip-trade.appspot.com",
-    messagingSenderId: "965590400240",
-    appId: "1:965590400240:web:d3864019ec2442e44e5635",
-    measurementId: "G-VZPQLTE068",
+    apiKey: import.meta.env.SECRET_KEY,
+    authDomain: "symbiosis-swapshop.firebaseapp.com",
+    projectId: "symbiosis-swapshop",
+    storageBucket: "symbiosis-swapshop.appspot.com",
+    messagingSenderId: "418001845210",
+    appId: "1:418001845210:web:af8bac3ef91a859ec41ee3",
+    measurementId: "G-GDDEHTXMXK",
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
 const store = getStorage(app);
 
-export { db, store };
+export { store };

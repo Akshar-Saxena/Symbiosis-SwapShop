@@ -1,37 +1,42 @@
 import React, { useEffect, useState } from "react";
 import Loader from "../components/Loader";
 import { Toaster } from "react-hot-toast";
-import verifyToken from "../constants/verifyToken";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../constants/firebaseConfig";
 import NavBar from "../components/NavBar";
 import BookCard from "../components/BookCard";
 import Footer from "../components/Footer";
+import axios from "axios";
 
 export default function AllBooksPage() {
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [verified, setVerified] = useState();
     const [data, setData] = useState();
 
     const getBooks = async () => {
         setLoading(true);
-        const allBooks = await getDocs(collection(db, "books"));
-        const books = [];
-        allBooks.forEach((element) => {
-            books.push(element.data());
-        });
-        setData(books);
-        setLoading(false);
+        axios
+            .get("https://campus-share-api.onrender.com/allItems")
+            .then((res) => {
+                setData(res.data);
+                setLoading(false);
+            })
+            .catch((e) => {
+                setLoading(false);
+            });
     };
 
     const check = async () => {
-        setLoading(true);
-        let flag = await verifyToken(document.cookie.slice(6));
-        if (flag) {
-            getBooks();
-        }
-        setVerified(flag);
-        setLoading(false);
+        axios
+            .post("https://campus-share-api.onrender.com/details", {
+                id: document.cookie.slice(6),
+            })
+            .then((response) => {
+                setVerified(true);
+                setLoading(false);
+                getBooks();
+            })
+            .catch((error) => {
+                setLoading(false);
+            });
     };
 
     useEffect(() => {

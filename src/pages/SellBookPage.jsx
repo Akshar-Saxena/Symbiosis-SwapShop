@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
-import verifyToken from "../constants/verifyToken";
 import Loader from "../components/Loader";
 import toast, { Toaster } from "react-hot-toast";
 import { addDoc, collection } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { db, store } from "../constants/firebaseConfig";
+import { store } from "../constants/firebaseConfig";
 import { v4 } from "uuid";
+import axios from "axios";
 
 export default function SellBookPage() {
     const [verified, setVerified] = useState(false);
@@ -16,10 +16,18 @@ export default function SellBookPage() {
     const [price, setPrice] = useState(0);
     const [genre, setGenre] = useState("");
     const [img, setImg] = useState();
-    const check = async () => {
-        let flag = await verifyToken(document.cookie.slice(6));
-        setVerified(flag);
-        setLoading(false);
+    const check = () => {
+        axios
+            .post("https://campus-share-api.onrender.com/details", {
+                id: document.cookie.slice(6),
+            })
+            .then((response) => {
+                setVerified(true);
+                setLoading(false);
+            })
+            .catch((error) => {
+                setLoading(false);
+            });
     };
 
     const getCurrentDateTime = () => {

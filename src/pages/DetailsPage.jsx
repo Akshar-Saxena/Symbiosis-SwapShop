@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import Loader from "../components/Loader";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../constants/firebaseConfig";
 
 export default function DetailsPage() {
     const location = useLocation();

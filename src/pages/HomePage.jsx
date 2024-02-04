@@ -37,7 +37,7 @@ export default function HomePage() {
                                     Opportunities
                                 </span>{" "}
                                 <br /> Across
-                                <span className="text-[#FB635D]">Campus!</span>
+                                <span className="text-[#FB635D]"> Campus!</span>
                             </h1>
                             <p className="text-gray-600 font-semibold my-5">
                                 Elevate your style, share your flair – Symbiosis
