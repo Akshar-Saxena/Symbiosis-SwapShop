@@ -11,15 +11,16 @@ export default function BookCard(props) {
                     Title: <span className="text-[#FB635D]">{props.title}</span>
                 </h1>
                 <h1 className="font-semibold">
-                    Author:{" "}
-                    <span className="text-[#FB635D]">{props.author}</span>
-                </h1>
-                <h1 className="font-semibold">
-                    Genre: <span className="text-[#FB635D]">{props.genre}</span>
+                    Category:{" "}
+                    <span className="text-[#FB635D]">{props.genre}</span>
                 </h1>
                 <h1 className="font-semibold">
                     Price:{" "}
-                    <span className="text-[#FB635D]">Rs.{props.price}</span>
+                    {props.price == 0 ? (
+                        <span className="text-[#FB635D]">Free</span>
+                    ) : (
+                        <span className="text-[#FB635D]">Rs.{props.price}</span>
+                    )}
                 </h1>
                 <h1 className="font-bold text-xs">
                     Uploaded on:{" "}

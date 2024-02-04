@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import Loader from "../components/Loader";
 import { collection, getDocs } from "firebase/firestore";
+import axios from "axios";
 
 export default function DetailsPage() {
     const location = useLocation();
@@ -10,24 +11,26 @@ export default function DetailsPage() {
     const [loading, setLoading] = useState(false);
     const [user, setUser] = useState("");
     const [email, setEmail] = useState("");
-    const [id, setId] = useState("");
 
-    const getUsers = async () => {
+    const getUsers = (id) => {
         setLoading(true);
-        const users = await getDocs(collection(db, "users"));
-        users.forEach((element) => {
-            if (element.data().id == location.state.token) {
-                setUser(element.data().username);
-                setEmail(element.data().email);
-            }
-        });
-        setLoading(false);
+        axios
+            .post("https://campus-share-api.onrender.com/details", {
+                id: id,
+            })
+            .then((res) => {
+                setUser(res.data.username);
+                setEmail(res.data.email);
+                setLoading(false);
+            })
+            .catch((e) => {
+                setLoading(false);
+            });
     };
 
     useEffect(() => {
         try {
-            setId(location.state.token);
-            getUsers();
+            getUsers(location.state.token);
         } catch (err) {
             navigate("/");
         }

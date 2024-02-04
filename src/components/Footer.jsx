@@ -20,12 +20,12 @@ export default function Footer() {
                 </a>
                 <Link to="/upload">
                     <li className="hover:text-[#FB635D] cursor-pointer font-semibold ">
-                        Sell
+                        Upload
                     </li>
                 </Link>
                 <Link to="/books">
                     <li className="hover:text-[#FB635D] cursor-pointer font-semibold ">
-                        Buy
+                        All Items
                     </li>
                 </Link>
             </ul>

@@ -15,7 +15,7 @@ export default function App() {
                 <Route exact path="/signup" element={<SignUpPage />} />
                 <Route exact path="/login" element={<LoginPage />} />
                 <Route exact path="/upload" element={<SellBookPage />} />
-                <Route exact path="/books" element={<AllBooksPage />} />
+                <Route exact path="/items" element={<AllBooksPage />} />
                 <Route exact path="/details" element={<DetailsPage />} />
             </Routes>
         </Router>

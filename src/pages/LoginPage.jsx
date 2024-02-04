@@ -19,14 +19,12 @@ export default function LoginPage() {
                 password: pass,
             })
             .then((res) => {
-                console.log(res.data);
                 setLoading(false);
                 toast.success("Login successful");
                 document.cookie = `token=${res.data.token}`;
                 navigate("/");
             })
             .catch((err) => {
-                console.log(err.response.data);
                 setLoading(false);
                 toast.error("Invalid Email or Password");
             });

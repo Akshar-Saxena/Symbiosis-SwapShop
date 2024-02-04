@@ -63,34 +63,20 @@ export default function AllBooksPage() {
                                 <h1 className="text-5xl font-bold">
                                     All{" "}
                                     <span className="text-[#FB635D]">
-                                        Books.
+                                        Items.
                                     </span>
                                 </h1>
-                                {/* <div className="bg-[#FB635D] flex justify-center items-center rounded-full w-[33%] h-[55px] relative">
-                                    <div className="absolute flex justify-center w-full px-8 items-center h-full top-0">
-                                        <input
-                                            className="bg-transparent focus:outline-none text-white w-full border-b-2 py-2 border-white"
-                                            type="text"
-                                        />
-                                        <img
-                                            className="w-[30px]"
-                                            src="/search.png"
-                                            alt=""
-                                        />
-                                    </div>
-                                </div> */}
                             </div>
                             <div className="w-[90%] flex flex-wrap m-auto justify-evenly items-center my-10">
-                                {data != undefined &&
+                                {data != [] &&
                                     data.map((element, i) => (
                                         <BookCard
                                             key={i}
                                             title={element.title}
-                                            author={element.author}
                                             price={element.price}
                                             img={element.img}
                                             date={element.date}
-                                            genre={element.genre}
+                                            genre={element.category}
                                             token={element.id}
                                         />
                                     ))}

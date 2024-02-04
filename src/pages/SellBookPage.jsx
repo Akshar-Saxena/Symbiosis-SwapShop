@@ -12,10 +12,9 @@ export default function SellBookPage() {
     const [verified, setVerified] = useState(false);
     const [loading, setLoading] = useState(true);
     const [title, setTitle] = useState("");
-    const [author, setAuthor] = useState("");
-    const [price, setPrice] = useState(0);
+    const [price, setPrice] = useState(-1000);
     const [genre, setGenre] = useState("");
-    const [img, setImg] = useState();
+    const [img, setImg] = useState("");
     const check = () => {
         axios
             .post("https://campus-share-api.onrender.com/details", {
@@ -30,44 +29,34 @@ export default function SellBookPage() {
             });
     };
 
-    const getCurrentDateTime = () => {
-        const now = new Date();
-        const year = now.getFullYear();
-        const month = String(now.getMonth() + 1).padStart(2, "0");
-        const day = String(now.getDate()).padStart(2, "0");
-        const hours = String(now.getHours()).padStart(2, "0");
-        const minutes = String(now.getMinutes()).padStart(2, "0");
-        const seconds = String(now.getSeconds()).padStart(2, "0");
-        const formattedDate = `${month}-${day}-${year}`;
-        const formattedTime = `${hours}:${minutes}:${seconds}`;
-        return `${formattedDate} ${formattedTime}`;
-    };
-
     const upload = async () => {
         setLoading(true);
         let link;
-        let date = getCurrentDateTime();
         const image = ref(store, `${v4()}`);
         uploadBytes(image, img)
             .then((data) => {
                 getDownloadURL(data.ref).then(async (val) => {
                     link = val;
-                    await addDoc(collection(db, "books"), {
-                        id: document.cookie.slice(6),
-                        title: title,
-                        author: author,
-                        price: price,
-                        genre: genre,
-                        img: link,
-                        date: date,
-                    });
-                    setTitle("");
-                    setAuthor("");
-                    setPrice(0);
-                    setGenre("");
-                    setImg("");
-                    setLoading(false);
-                    toast.success("Book uploaded successfully");
+                    axios
+                        .post("https://campus-share-api.onrender.com/upload", {
+                            id: document.cookie.slice(6),
+                            title: title,
+                            price: price,
+                            category: genre,
+                            img: link,
+                        })
+                        .then((res) => {
+                            setLoading(false);
+                            setTitle("");
+                            setPrice(-1000);
+                            setGenre("");
+                            setImg("");
+                            toast.success("Item uploaded successfully");
+                        })
+                        .catch((e) => {
+                            setLoading(false);
+                            toast.error("Error uploading Item");
+                        });
                 });
             })
             .catch((e) => {
@@ -77,13 +66,7 @@ export default function SellBookPage() {
     };
 
     const validate = () => {
-        if (
-            title == "" ||
-            author == "" ||
-            genre == "" ||
-            img == "" ||
-            price == ""
-        ) {
+        if (title == "" || genre == "" || img == "") {
             toast.error("Fill each Field");
             return null;
         }
@@ -111,64 +94,51 @@ export default function SellBookPage() {
                         <div>
                             <NavBar set={verified} />
                             <h1 className="text-5xl text-center my-10 font-bold">
-                                Upload a{" "}
-                                <span className="text-[#FB635D]">Book.</span>
+                                Upload an{" "}
+                                <span className="text-[#FB635D]">Item.</span>
                             </h1>
                             <div className="w-[60%] max-[800px]:w-[90%] m-auto h-full bg-[#C5DCFC] max-[800px]:px-12 p-4 px-[100px] rounded-t-[60px]">
                                 <input
                                     className="px-6 py-4 my-[23.5px] w-full bg-transparent border-b-2 border-black focus:outline-none focus:border-[#FB635D]"
                                     type="text"
-                                    placeholder="Enter the title of the book"
+                                    placeholder="Enter the title of the Item"
                                     value={title}
                                     onChange={(e) => setTitle(e.target.value)}
-                                />
-                                <input
-                                    className="px-6 py-4 my-[23.5px] w-full bg-transparent border-b-2 border-black focus:outline-none focus:border-[#FB635D]"
-                                    type="text"
-                                    placeholder="Enter the author of the book"
-                                    value={author}
-                                    onChange={(e) => setAuthor(e.target.value)}
                                 />
                                 <select
                                     value={genre}
                                     onChange={(e) => setGenre(e.target.value)}
                                     className="px-6 py-4 my-[23.5px] w-full bg-transparent border-b-2 border-black focus:outline-none cursor-pointer focus:border-[#FB635D]"
                                 >
-                                    <option value="fiction">Fiction</option>
-                                    <option value="non-fiction">
-                                        Non-Fiction
+                                    <option value="">
+                                        Select the Category
                                     </option>
-                                    <option value="poetry">Poetry</option>
-                                    <option value="drama">Drama</option>
-                                    <option value="comics">
-                                        Comics / Graphic Novels
+                                    <option value="stationary">
+                                        Stationary
                                     </option>
-                                    <option value="cookbook">Cookbook</option>
-                                    <option value="travel-guide">
-                                        Travel Guide
-                                    </option>
-                                    <option value="novel">Novel</option>
-                                    <option value="education">Education</option>
+                                    <option value="apparels">Apparels</option>
+                                    <option value="shoes">Shoes</option>
+                                    <option value="courses">Courses</option>
+                                    <option value="books">Books</option>
                                 </select>
                                 <input
                                     className="px-6 py-4 my-[23.5px] w-full bg-transparent border-b-2 border-black focus:outline-none focus:border-[#FB635D]"
                                     type="number"
-                                    placeholder="Enter the Selling Price of the book"
-                                    value={price}
+                                    placeholder="Enter the Selling Price of the Item (0 for Free)"
+                                    value={price == -1000 ? "" : price}
                                     onChange={(e) => setPrice(e.target.value)}
                                 />
                                 <input
                                     className="px-6 py-4 my-[23.5px] w-full bg-transparent border-b-2 border-black focus:outline-none focus:border-[#FB635D]"
                                     type="file"
                                     accept="image/*"
-                                    placeholder="Enter the Selling Price of the book"
                                     onChange={(e) => setImg(e.target.files[0])}
                                 />
                                 <button
                                     onClick={validate}
                                     className="py-4 ml-[50%] my-6 -translate-x-1/2  rounded-full px-10 text-white bg-[#FB635D]"
                                 >
-                                    Upload Book
+                                    Upload Item
                                 </button>
                             </div>
                         </div>

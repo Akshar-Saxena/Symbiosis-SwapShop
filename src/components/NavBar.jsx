@@ -20,12 +20,12 @@ export default function NavBar(props) {
                 </a>
                 <Link to="/upload">
                     <li className="hover:text-[#FB635D] cursor-pointer font-semibold ">
-                        Sell
+                        Upload
                     </li>
                 </Link>
-                <Link to="/books">
+                <Link to="/items">
                     <li className="hover:text-[#FB635D] cursor-pointer font-semibold ">
-                        Buy
+                        All Items
                     </li>
                 </Link>
                 {/* <Link>
