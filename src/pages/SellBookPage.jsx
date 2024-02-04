@@ -113,13 +113,13 @@ export default function SellBookPage() {
                                     <option value="">
                                         Select the Category
                                     </option>
-                                    <option value="stationary">
+                                    <option value="Stationary">
                                         Stationary
                                     </option>
-                                    <option value="apparels">Apparels</option>
-                                    <option value="shoes">Shoes</option>
-                                    <option value="courses">Courses</option>
-                                    <option value="books">Books</option>
+                                    <option value="Apparels">Apparels</option>
+                                    <option value="Shoes">Shoes</option>
+                                    <option value="Courses">Courses</option>
+                                    <option value="Books">Books</option>
                                 </select>
                                 <input
                                     className="px-6 py-4 my-[23.5px] w-full bg-transparent border-b-2 border-black focus:outline-none focus:border-[#FB635D]"
