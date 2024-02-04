@@ -19,8 +19,10 @@ export default function DetailsPage() {
                 id: id,
             })
             .then((res) => {
-                setUser(res.data.username);
-                setEmail(res.data.email);
+                if (Object.keys(res.data).length == 2) {
+                    setUser(res.data.username);
+                    setEmail(res.data.email);
+                }
                 setLoading(false);
             })
             .catch((e) => {

@@ -21,7 +21,11 @@ export default function SellBookPage() {
                 id: document.cookie.slice(6),
             })
             .then((response) => {
-                setVerified(true);
+                if (Object.keys(response.data).length == 2) {
+                    setVerified(true);
+                } else {
+                    setVerified(false);
+                }
                 setLoading(false);
             })
             .catch((error) => {

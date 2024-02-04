@@ -9,7 +9,7 @@ import axios from "axios";
 export default function AllBooksPage() {
     const [loading, setLoading] = useState(true);
     const [verified, setVerified] = useState();
-    const [data, setData] = useState();
+    const [data, setData] = useState([]);
 
     const getBooks = async () => {
         setLoading(true);
@@ -30,9 +30,13 @@ export default function AllBooksPage() {
                 id: document.cookie.slice(6),
             })
             .then((response) => {
-                setVerified(true);
+                if (Object.keys(response.data).length == 2) {
+                    setVerified(true);
+                    getBooks();
+                } else {
+                    setVerified(false);
+                }
                 setLoading(false);
-                getBooks();
             })
             .catch((error) => {
                 setLoading(false);
