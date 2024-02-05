@@ -109,14 +109,14 @@ export default function DetailsPage() {
                                 <input
                                     className="px-6 py-4 my-[23.5px] w-full bg-transparent border-b-2 border-black focus:outline-none focus:border-[#FB635D]"
                                     type="text"
-                                    placeholder="Enter the title of the Item"
+                                    placeholder="Enter the Subject"
                                     value={subject}
                                     onChange={(e) => setSubject(e.target.value)}
                                 />
                                 <textarea
                                     className="px-6 py-4 pb-5 my-[23.5px] w-full bg-transparent border-b-2 border-black focus:outline-none focus:border-[#FB635D]"
                                     type="text"
-                                    placeholder="Enter the title of the Item"
+                                    placeholder="Enter the Message"
                                     value={msg}
                                     rows={6}
                                     onChange={(e) => setMsg(e.target.value)}
