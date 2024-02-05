@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function BookCard(props) {
+export default function BookCardDetailed(props) {
     const navigate = useNavigate();
     return (
         <div className="flex flex-wrap justify-center w-fit p-5 m-3 items-center rounded-lg shadow-lg shadow-[#FB635D] bg-[#EBF3FF]">
@@ -30,23 +30,13 @@ export default function BookCard(props) {
                     Uploaded on:{" "}
                     <span className="text-[#FB635D]">{props.date}</span>
                 </h1>
-                <button
-                    onClick={() =>
-                        navigate("/details", {
-                            state: {
-                                token: props.token,
-                                title: props.title,
-                                img: props.img,
-                                genre: props.genre,
-                                price: props.price,
-                                date: props.date,
-                            },
-                        })
-                    }
-                    className="py-2 rounded-full px-6 mt-5 text-white bg-[#FB635D]"
-                >
-                    View Details
-                </button>
+                <h1 className="font-bold text-xs">
+                    Uploaded by:{" "}
+                    <span className="text-[#FB635D]">{props.user}</span>
+                </h1>
+                <h1 className="font-bold text-xs">
+                    Email: <span className="text-[#FB635D]">{props.email}</span>
+                </h1>
             </div>
         </div>
     );

@@ -10,7 +10,7 @@ export default function UploadCard(props) {
                 <h1 className="font-semibold text-[#FB635D]">
                     Price :{" "}
                     <span className="text-black">
-                        {props.price == 0 ? "Free" : `Rs. ${props.price}`}
+                        {props.price == "0" ? "Free" : `Rs. ${props.price}`}
                     </span>
                 </h1>
             </div>
