@@ -9,7 +9,43 @@ export default function SignUpPage() {
     const [pass, setPass] = useState("");
     const [username, setUsername] = useState("");
     const [loading, setLoading] = useState(false);
+    const [correctOtp, setCorrectOtp] = useState(0);
+    const [otp, setOtp] = useState(-1);
+    const [toggle, setToggle] = useState(false);
     const navigate = useNavigate();
+
+    const verifyOtp = () => {
+        if (otp == correctOtp) {
+            signHandler();
+        } else {
+            toast.error("Invalid OTP");
+        }
+    };
+
+    const OtpVerification = () => {
+        setLoading(true);
+        axios
+            .post("https://campus-share-api.onrender.com/otp", {
+                email: email,
+                username: username,
+            })
+            .then((response) => {
+                setLoading(false);
+                if (Object.keys(response.data).length == 2) {
+                    setCorrectOtp(response.data.otp);
+                    toast.success(
+                        "OTP Sent Successfully! Please check Spam box in Gmail"
+                    );
+                } else {
+                    toast.error("Error Sending OTP, Refresh and Retry Again!");
+                }
+                setToggle(true);
+            })
+            .catch((error) => {
+                setLoading(false);
+                null;
+            });
+    };
 
     const signHandler = async () => {
         setLoading(true);
@@ -46,7 +82,7 @@ export default function SignUpPage() {
             return null;
         }
 
-        signHandler();
+        OtpVerification();
     };
 
     return (
@@ -74,7 +110,22 @@ export default function SignUpPage() {
                         />
                     </div>
                     <div className="bg-[#C5DCFC] max-[750px]:w-full max-[750px]:rounded-none flex flex-col justify-center items-center w-[60%] shadow-lg shadow-[#FB635D] rounded-l-[80px]">
-                        <h1 className="text-5xl font-bold mb-8">Sign Up</h1>
+                        <h1
+                            className="text-5xl font-bold mb-8"
+                            style={{
+                                display: `${!toggle ? "block" : "none"}`,
+                            }}
+                        >
+                            Sign Up
+                        </h1>
+                        <h1
+                            className="text-5xl font-bold mb-8"
+                            style={{
+                                display: `${toggle ? "block" : "none"}`,
+                            }}
+                        >
+                            Verify OTP
+                        </h1>
                         <div className="w-[60%] max-[400px]:w-[75%]">
                             <input
                                 className="px-6 py-4 my-8 w-full bg-transparent border-b-2 border-black focus:outline-none focus:border-[#FB635D]"
@@ -82,6 +133,9 @@ export default function SignUpPage() {
                                 placeholder="Email Address"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
+                                style={{
+                                    display: `${!toggle ? "block" : "none"}`,
+                                }}
                             />
                             <input
                                 className="px-6 py-4 my-8 w-full bg-transparent border-b-2 border-black focus:outline-none focus:border-[#FB635D]"
@@ -89,6 +143,9 @@ export default function SignUpPage() {
                                 placeholder="Create Username"
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
+                                style={{
+                                    display: `${!toggle ? "block" : "none"}`,
+                                }}
                             />
                             <input
                                 className="px-6 py-4 my-8 w-full bg-transparent border-b-2 border-black focus:outline-none focus:border-[#FB635D]"
@@ -96,11 +153,36 @@ export default function SignUpPage() {
                                 placeholder="Create Password"
                                 value={pass}
                                 onChange={(e) => setPass(e.target.value)}
+                                style={{
+                                    display: `${!toggle ? "block" : "none"}`,
+                                }}
+                            />
+                            <input
+                                className="px-6 py-4 my-8 w-full bg-transparent border-b-2 border-black focus:outline-none focus:border-[#FB635D]"
+                                type="number"
+                                placeholder="Enter the OTP"
+                                value={otp == -1 ? "" : otp}
+                                onChange={(e) => setOtp(e.target.value)}
+                                style={{
+                                    display: `${toggle ? "block" : "none"}`,
+                                }}
                             />
                         </div>
                         <button
                             onClick={validate}
                             className="py-4 mt-14 rounded-full px-10 text-white bg-[#FB635D]"
+                            style={{
+                                display: `${!toggle ? "block" : "none"}`,
+                            }}
+                        >
+                            Get Otp
+                        </button>
+                        <button
+                            onClick={verifyOtp}
+                            className="py-4 mt-14 rounded-full px-10 text-white bg-[#FB635D]"
+                            style={{
+                                display: `${toggle ? "block" : "none"}`,
+                            }}
                         >
                             Sign Up
                         </button>

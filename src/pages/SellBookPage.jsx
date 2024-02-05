@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
 import Loader from "../components/Loader";
 import toast, { Toaster } from "react-hot-toast";
-import { addDoc, collection } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { store } from "../constants/firebaseConfig";
 import { v4 } from "uuid";
