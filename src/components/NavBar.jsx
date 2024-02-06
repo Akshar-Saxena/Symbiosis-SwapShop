@@ -49,7 +49,7 @@ export default function NavBar(props) {
                             </li>
                         </Link>
                     ) : (
-                        <Link onClick={() => navigate("/profile")}>
+                        <Link to="/profile">
                             <li className="hover:text-white py-5 text-lg cursor-pointer font-semibold ">
                                 Profile
                             </li>
