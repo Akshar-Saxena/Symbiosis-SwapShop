@@ -124,7 +124,7 @@ export default function DetailsPage() {
                             </div>
                             <button
                                 onClick={validate}
-                                className="py-4 mt-4 max-[750px]:hidden rounded-full px-10 text-white bg-[#FB635D]"
+                                className="py-4 mt-4 mb-6 rounded-full px-10 text-white bg-[#FB635D]"
                             >
                                 Send Message
                             </button>

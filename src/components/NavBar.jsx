@@ -51,14 +51,11 @@ export default function NavBar(props) {
                     ) : (
                         <Link
                             onClick={() => {
-                                document.cookie =
-                                    "token=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
-                                navigate("/");
-                                window.location.reload();
+                                navigate("/profile");
                             }}
                         >
                             <li className="hover:text-white py-5 text-lg cursor-pointer font-semibold ">
-                                Logout
+                                Profile
                             </li>
                         </Link>
                     )}
