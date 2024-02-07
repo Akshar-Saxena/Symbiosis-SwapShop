@@ -9,7 +9,9 @@ export default function SignUpPage() {
     const [pass, setPass] = useState("");
     const [username, setUsername] = useState("");
     const [loading, setLoading] = useState(false);
-    const [correctOtp, setCorrectOtp] = useState(0);
+    const [correctOtp, setCorrectOtp] = useState(
+        Math.floor(Math.random() * (9999999999 - 1000000000 + 1)) + 1000000000
+    );
     const [otp, setOtp] = useState(-1);
     const [toggle, setToggle] = useState(false);
     const navigate = useNavigate();
