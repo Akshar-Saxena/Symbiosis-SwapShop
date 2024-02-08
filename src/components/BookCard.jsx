@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import forge from "node-forge";
 
 export default function BookCard(props) {
     const md = forge.md.sha512.create();
