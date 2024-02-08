@@ -3,6 +3,7 @@ import toast, { Toaster } from "react-hot-toast";
 import Loader from "../components/Loader";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import forge from "node-forge";
 
 export default function SignUpPage() {
     const [email, setEmail] = useState("");
@@ -51,11 +52,14 @@ export default function SignUpPage() {
 
     const signHandler = async () => {
         setLoading(true);
+        const md = forge.md.sha512.create();
+        md.update(pass, "utf8");
+        const hashHex = md.digest().toHex();
         axios
             .post("https://campus-share-api.onrender.com/signup", {
-                username: username,
-                email: email,
-                password: pass,
+                username: username.trim(),
+                email: email.trim(),
+                password: hashHex,
             })
             .then((res) => {
                 document.cookie =

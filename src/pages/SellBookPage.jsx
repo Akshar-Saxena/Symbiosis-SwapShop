@@ -43,7 +43,7 @@ export default function SellBookPage() {
                     axios
                         .post("https://campus-share-api.onrender.com/upload", {
                             id: document.cookie.slice(6),
-                            title: title,
+                            title: title.trim(),
                             price: price,
                             category: genre,
                             img: link,

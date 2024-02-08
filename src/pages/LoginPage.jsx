@@ -3,6 +3,7 @@ import Loader from "../components/Loader";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
+import forge from "node-forge";
 
 export default function LoginPage() {
     const [email, setEmail] = useState("");
@@ -12,15 +13,19 @@ export default function LoginPage() {
 
     const loginHandler = async () => {
         setLoading(true);
-        let flag = false;
+        const md = forge.md.sha512.create();
+        md.update(pass, "utf8");
+        const hashHex = md.digest().toHex();
         axios
             .post("https://campus-share-api.onrender.com/login", {
-                email: email,
-                password: pass,
+                email: email.trim(),
+                password: `${hashHex}`,
             })
             .then((res) => {
                 setLoading(false);
                 toast.success("Login successful");
+                document.cookie =
+                    "token=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
                 document.cookie = `token=${res.data.token}`;
                 navigate("/");
             })
