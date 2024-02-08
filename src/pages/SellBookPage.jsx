@@ -6,6 +6,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { store } from "../constants/firebaseConfig";
 import { v4 } from "uuid";
 import axios from "axios";
+import bcrypt from "bcryptjs";
 
 export default function SellBookPage() {
     const [verified, setVerified] = useState(false);

@@ -1,12 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import forge from "node-forge";
 
 export default function BookCard(props) {
-    const md = forge.md.sha512.create();
-    md.update(props.token, "utf8");
-    const hashHex = md.digest().toHex();
-    const navigate = useNavigate();
     return (
         <div className="flex flex-wrap justify-center w-fit p-5 m-3 items-center rounded-lg shadow-lg shadow-[#FB635D] bg-[#EBF3FF]">
             <img
@@ -38,7 +33,7 @@ export default function BookCard(props) {
                     onClick={() =>
                         navigate("/details", {
                             state: {
-                                token: hashHex,
+                                token: props.token,
                                 title: props.title,
                                 img: props.img,
                                 genre: props.genre,
