@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function BookCard(props) {
+    const navigate = useNavigate();
     return (
         <div className="flex flex-wrap justify-center w-fit p-5 m-3 items-center rounded-lg shadow-lg shadow-[#FB635D] bg-[#EBF3FF]">
             <img
