@@ -14,6 +14,7 @@ export default function ProfilePage() {
     const navigate = useNavigate();
 
     const getMyItems = () => {
+        setLoading(true);
         axios
             .post("https://campus-share-api.onrender.com/myitems", {
                 query: document.cookie.slice(6),
@@ -28,6 +29,7 @@ export default function ProfilePage() {
                     null;
                 }
             });
+        setLoading(false);
     };
 
     const check = () => {
