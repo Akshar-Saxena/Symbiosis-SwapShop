@@ -79,12 +79,9 @@ export default function SignUpPage() {
             toast.error("Fill each fields");
             return null;
         }
-        if (!email.includes("@akgec.ac.in")) {
-            toast.error("Please enter college email");
-            return null;
-        }
+
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            toast.error("Please enter college email");
+            toast.error("Please enter a valid email");
             return null;
         }
 
